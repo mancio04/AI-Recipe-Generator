@@ -1,0 +1,24 @@
+services:
+  backend:
+    build: .
+    working_dir: /app/API
+    command: python api.py
+    ports:
+      - "8080:8000"
+    networks:
+      - recipe-network
+
+  frontend:
+    build: .
+    working_dir: /app
+    command: python app.py
+    ports:
+      - "5050:5000"
+    depends_on:
+      - backend
+    networks:
+      - recipe-network
+
+networks:
+  recipe-network:
+    driver: bridge
