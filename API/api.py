@@ -5,6 +5,7 @@ from src.recipe_retrival import cerca_ricette
 app = Flask(__name__)
 
 # Endpoint dell'API (versione 1)
+# si aspetta degli ingredienti inviati con metodo POST da app.py
 @app.route('/api/v1/search', methods=['POST'])
 def search_recipe():
     
@@ -16,6 +17,7 @@ def search_recipe():
     ingredienti = data.get('ingredients')
     
     try:
+        # chiamata alla funzione cerca_ricette del modulo recipe_retrival
         risultati = cerca_ricette(ingredienti)
         return jsonify({
             "status": "success",
@@ -27,5 +29,5 @@ def search_recipe():
         return jsonify({"status": "error", "message": str(e)}), 500
 
 if __name__ == '__main__':
-    #il backend gira sulla porta 8000
+    #facciamo girare l'API sulla porta 8000
     app.run(host='0.0.0.0', port=8000, debug=True)

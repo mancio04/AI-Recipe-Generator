@@ -45,6 +45,7 @@ def cerca_ricette(ingredients_input):
             global_index = global_indexes[local_index]
             recipe = dataset.iloc[global_index]
 
+            # conversione da numpy.array a lista per json
             ingredienti_list = recipe["NER"].tolist()
 
             results.append({
