@@ -10,6 +10,4 @@ API/src/idx/
 # ignore pycache
 API/src/__pycache__/
 
-API/src/embeddings.py 
-API/src/main.py
 
