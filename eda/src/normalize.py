@@ -1,7 +1,13 @@
 import ast
 import pandas as pd
+import sys
+from pathlib import Path
+root_path = Path(__file__).resolve().parent.parent.parent
+if str(root_path) not in sys.path:
+    sys.path.insert(0, str(root_path))
+from config import FULL_DATASET, FORMATTED_DATASET
 
-dataset = pd.read_csv("../../dataset/full_dataset.csv")
+dataset = pd.read_csv(FULL_DATASET)
 
 # filtro le colonne prendendo solo quelle informative
 dataset = dataset[["title", "ingredients", "directions", "NER"]]
@@ -24,4 +30,4 @@ dataset["#steps"] = dataset["directions"].apply(len)
 # aggiungo una colonna che contiene il numero di parole delle istruzioni
 dataset["directions_len"] = dataset["directions"].astype(str).apply(lambda x: len(x.split()))
 
-dataset.to_parquet("../../dataset/formatted.parquet")
+dataset.to_parquet(FORMATTED_DATASET)

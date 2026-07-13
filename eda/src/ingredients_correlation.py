@@ -3,8 +3,14 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 from collections import Counter
+import sys
+from pathlib import Path
+root_path = Path(__file__).resolve().parent.parent.parent
+if str(root_path) not in sys.path:
+    sys.path.insert(0, str(root_path))
+from config import FORMATTED_DATASET, IMG_DIR
 
-dataset = pd.read_parquet("../../dataset/formatted.parquet")
+dataset = pd.read_parquet(FORMATTED_DATASET)
 
 # seleziono i 20 ingredienti più frequenti
 counter = Counter()
@@ -30,4 +36,4 @@ sns.heatmap(corr, annot=True, cmap="coolwarm", mask=mask, fmt=".2f", annot_kws={
 plt.xticks(fontsize=5, rotation=45)
 plt.yticks(fontsize=6)
 plt.title("top 20 ingredients correlation")
-plt.savefig("../img/ingredients_correlation.png", dpi=300)
+plt.savefig(IMG_DIR / "ingredients_correlation.png", dpi=300)

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generatore di Ricette</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <main class="main-container">  
+        <h1>Genera una Ricetta</h1>
+        <p>Inserisci gli ingredienti che hai a disposizione separati da una virgola.</p>
+        <form action="/input" method="POST" class="recipe-form">
+            <label for="ingredients" class="form-label">Ingredienti disponibili:</label>
+            <input type="text" id="ingredients" name="ingredients" 
+                   placeholder="Es: egg, flour, milk" 
+                   class="form-input"
+                   required>    
+            <button type="submit" class="submit-btn">Genera Ricette</button>
+        </form>
+        {% if error %}
+            <p class="error-message"> {{ error }}</p>
+        {% endif %}
+    </main>
+</body>
+</html>

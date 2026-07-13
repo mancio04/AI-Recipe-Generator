@@ -1,13 +1,12 @@
 # ignore dataset directory
-API/dataset/
+dataset/
 
 # ignore virtual environment directory
 .venv/
 
 # ignore index directory
-API/src/idx/
+idx/
 
-# ignore pycache
-API/src/__pycache__/
-
-
+# ignore pycache directory
+__pycache__/
+app/backend/src/__pycache__/

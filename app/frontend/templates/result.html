@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ricette Consigliate</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="result-page">
+    <a href="/" class="back-link">← Torna alla ricerca</a>
+    <h2>Ricette consigliate per te</h2>
+    <div class="query-box">Hai cercato: "{{ query }}"</div>
+    {% for recipe in recipes %}
+        <div class="recipe-card">
+            <h3 class="recipe-title">{{ loop.index }}. {{ recipe.title }}</h3>
+            <span class="score">Score di somiglianza: {{ "%.3f"|format(recipe.score) }}</span>
+            <div class="section-title">Ingredienti necessari (NER):</div>
+            <p>{{ recipe.ingredients }}</p>
+            <div class="section-title">Istruzioni di preparazione:</div>
+            <p>{{ recipe.directions }}</p>
+        </div>
+    {% else %}
+        <div class="recipe-card">
+            <p>Siamo spiacenti, non abbiamo trovato ricette corrispondenti ai tuoi ingredienti.</p>
+        </div>
+    {% endfor %}
+</body>
+</html>
