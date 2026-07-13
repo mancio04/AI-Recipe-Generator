@@ -15,9 +15,21 @@
             <h3 class="recipe-title">{{ loop.index }}. {{ recipe.title }}</h3>
             <span class="score">Score di somiglianza: {{ "%.3f"|format(recipe.score) }}</span>
             <div class="section-title">Ingredienti necessari (NER):</div>
-            <p>{{ recipe.ingredients }}</p>
+            <ul class="ingredients-list">
+                {% for ingredient in recipe.ingredients %}
+                    {% if ingredient.strip() %}
+                        <li>{{ ingredient.strip() | capitalize }}</li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
             <div class="section-title">Istruzioni di preparazione:</div>
-            <p>{{ recipe.directions }}</p>
+            <ol class="directions-list">
+                {% for step in recipe.directions %}
+                    {% if step.strip() %}
+                        <li>{{ step.strip() | capitalize }}</li>
+                    {% endif %}
+                {% endfor %}
+            </ol>
         </div>
     {% else %}
         <div class="recipe-card">
