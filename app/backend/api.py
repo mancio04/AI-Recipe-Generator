@@ -21,8 +21,9 @@ def search_recipe():
         return jsonify({"status": "success", "count": len(risultati), "data": risultati}), 200
         
     except Exception as e:
+        traceback.print_exc()
         return jsonify({"status": "error", "message": str(e)}), 500
 
 if __name__ == "__main__":
     #facciamo girare l'API sulla porta 8000
-    app.run(host="0.0.0.0", port=8000, debug=False)
+    app.run(host="0.0.0.0", port=8000, debug=True)
