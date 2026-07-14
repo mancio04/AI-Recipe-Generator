@@ -16,8 +16,20 @@ dataset = pd.read_parquet(FORMATTED_DATASET)
 
 model = SentenceTransformer("all-MiniLM-L6-v2")
 
-# pre-carichiamo i percorsi delle shard per velocizzare le richieste future
-shards = sorted(glob.glob(str(INDEX_DIR / "shard_*.index")))
+index = faiss.read_index(str(INDEX_DIR / "shard_all.index"))
+global_indexes = np.load(INDEX_DIR / "shard_all.npy")
+
+
+def calculate_score(x):
+    if x <= 0.5:
+        return 1
+    if x <= 0.6:
+        return 2
+    if x <= 0.7:
+        return 3
+    if x <= 0.8:
+        return 4
+    return 5
 
 def cerca_ricette(ingredients_input):
     
@@ -29,35 +41,27 @@ def cerca_ricette(ingredients_input):
     )
     embeddings = embeddings.astype(np.float32).reshape(1, -1)
     
+    scores, local_indexes = index.search(embeddings, TOP_K)
     results = []
+
     
-    for shard in shards:
-        
-        # carico indice FAISS
-        index = faiss.read_index(shard)
+    for score, local_index in zip(scores[0], local_indexes[0]):
 
-        # carico id globali dello shard
-        x = shard.split("_")[-1].split(".")[0]
-        global_indexes = np.load(INDEX_DIR / f"shard_{x}.npy")
+        if local_index == -1:
+            continue
 
-        # trovo le migliori TOP_K corrispondenze locali
-        scores, local_indexes = index.search(embeddings, TOP_K)
-        
-        for score, local_index in zip(scores[0], local_indexes[0]):
+        global_index = global_indexes[local_index]
+        recipe = dataset.iloc[global_index]
 
-            if local_index == -1:
-                continue
+        points = calculate_score(float(score))
 
-            global_index = global_indexes[local_index]
-            recipe = dataset.iloc[global_index]
-
-            results.append({
-                "id": int(global_index),
-                "score": float(score),
-                "title": recipe["title"],
-                "ingredients": recipe["NER"].tolist(),
-                "directions": recipe["directions"].tolist()
-            })
+        results.append({
+            "id": int(global_index),
+            "score": points,
+            "title": recipe["title"],
+            "ingredients": recipe["NER"].tolist(),
+            "directions": recipe["directions"].tolist()
+        })
 
     # ordino in base allo score così da prendere le migliori TOP_K globali
     results.sort(key=lambda x: x["score"], reverse=True)
