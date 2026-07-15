@@ -8,4 +8,5 @@ INDEX_DIR = PROJECT_ROOT / "idx"
 FORMATTED_DATASET = DATASET_DIR / "dataset.parquet"
 FULL_DATASET = DATASET_DIR / "full_dataset.csv"
 
-IMG_DIR = PROJECT_ROOT / "eda" / "img"
+IMG_EDA_DIR = PROJECT_ROOT / "eda" / "img"
+IMG_EVALUATION_DIR = PROJECT_ROOT / "evaluation" / "img"
