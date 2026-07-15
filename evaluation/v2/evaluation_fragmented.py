@@ -1,19 +1,23 @@
 import random
 import pandas as pd
-from retrieval import search_recipes
 import sys
 from pathlib import Path
-root_path = Path(__file__).resolve().parent.parent
+root_path = Path(__file__).resolve().parent.parent.parent
 if str(root_path) not in sys.path:
     sys.path.insert(0, str(root_path))
 from config import FORMATTED_DATASET
+from retrieval.v2.retrieval_fragmented import search_recipes
 
 N_TEST = 100
 PERCENTAGE = 0.6
 TOP_K = 5
 
 random.seed(42)
+
+# carico dataset
+print("Loading dataset...")
 dataset = pd.read_parquet(FORMATTED_DATASET)
+print(f"{len(dataset)} recipes loaded")
 
 # campione casuale
 test_set = dataset.sample(n=N_TEST, random_state=42)
@@ -48,5 +52,5 @@ for _, recipe in test_set.iterrows():
 
 recall = (correct / tested) * 100
 
-print(f"Recall@{TOP_K}: {recall:.3f}%")
-print(f"Recipes found: {correct}/{N_TEST}")
+print(f"Recall@{TOP_K}: {int(recall)}%")
+print(f"Recipes found: {correct}/{tested}")

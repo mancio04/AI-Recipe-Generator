@@ -4,7 +4,7 @@ import pandas as pd
 from sentence_transformers import SentenceTransformer
 import sys
 from pathlib import Path
-root_path = Path(__file__).resolve().parent.parent
+root_path = Path(__file__).resolve().parent.parent.parent
 if str(root_path) not in sys.path:
     sys.path.insert(0, str(root_path))
 from config import FORMATTED_DATASET, INDEX_DIR
@@ -19,8 +19,10 @@ print("\nLoading Sentence-BERT...")
 model = SentenceTransformer("all-MiniLM-L6-v2")
 print("SBERT loaded")
 
+# converto in lista di stringhe perchè SBERT lavora con le stringhe
 texts = [" ".join(ingredients) for ingredients in dataset["NER"]]
 
+# creazione degli embeddings (matrice 2 231 142 x 384)
 print("\nCreating embeddings...")
 embeddings = model.encode(
     texts,
@@ -30,7 +32,11 @@ embeddings = model.encode(
     normalize_embeddings=True # serve perchè così FAISS può usare il prodotto scalare per la cosine similarity
 )
 embeddings = embeddings.astype(np.float32) # serve perchè FAISS lavora con float32
+print("Embeddings created")
 
+# creazione indice FAISS (indice vettoriale)
+print("\nSaving FAISS index...")
 index = faiss.IndexFlatIP(model.get_embedding_dimension())
 index.add(embeddings)
-faiss.write_index(index, INDEX_DIR / "embeddings.index")
+faiss.write_index(index, str(INDEX_DIR / "embeddings.index"))
+print("FAISS index saved")
