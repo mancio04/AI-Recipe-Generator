@@ -32,7 +32,7 @@ for percentage in PERCENTAGES:
         correct = 0
         tested = 0
 
-        for _, recipe in test_set.iterrows():
+        for index, recipe in test_set.iterrows():
 
             ingredients = list(recipe["NER"])
 
@@ -48,7 +48,7 @@ for percentage in PERCENTAGES:
 
             # controllo se la ricetta originale compare
             for result in results:
-                if set(result["ingredients"]) == set(ingredients):
+                if result["id"] == index:
                     correct += 1
 
             tested += 1

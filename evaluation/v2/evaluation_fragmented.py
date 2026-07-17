@@ -25,7 +25,7 @@ test_set = dataset.sample(n=N_TEST, random_state=42)
 correct = 0
 tested = 0
 
-for _, recipe in test_set.iterrows():
+for index, recipe in test_set.iterrows():
 
     ingredients = list(recipe["NER"])
 
@@ -42,7 +42,7 @@ for _, recipe in test_set.iterrows():
     # controllo se la ricetta originale compare
     found = False
     for result in results:
-        if set(result["ingredients"]) == set(ingredients):
+        if result["id"] == index:
             found = True
             break
 

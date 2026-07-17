@@ -65,6 +65,7 @@ def search_recipes(ingredients, top_k=5):
             recipe = dataset.iloc[global_index]
 
             results.append({
+                "id": int(global_index),
                 "score": float(score),
                 "title": recipe["title"],
                 "ingredients": list(recipe["NER"]),

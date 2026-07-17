@@ -84,7 +84,7 @@ Come possiamo vedere, si ha una grande densità di ricette che arrivano fino a 1
 
 ## Correlazione tra gli ingredienti
 
-![top 20 ingredients](./img/ingredients_correlation.png)
+![ingredients correlation](./img/ingredients_correlation.png)
 
 Sopra è mostrata la relazione tra i 20 ingredienti più comuni. Una relazione positiva indica che due ingredienti tendono ad essere insieme in una ricetta. Al contrario, una relazione negativa indica che due ingredienti tendono a evitarsi.
 
