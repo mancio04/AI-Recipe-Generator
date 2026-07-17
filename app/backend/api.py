@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from src.recipe_retrieval import cerca_ricette  
+from src.retrieval import search_recipes 
 
 app = Flask(__name__)
 
@@ -14,10 +14,11 @@ def search_recipe():
         return jsonify({"status": "error", "message": "Missing 'ingredients' in request body"}), 400
         
     ingredienti = data.get("ingredients")
-    
+    ingredienti = " ".join(sorted(ingredienti.split(",")))
+
     try:
         # chiamata alla funzione cerca_ricette del modulo recipe_retrieval
-        risultati = cerca_ricette(ingredienti)
+        risultati = search_recipes(ingredienti)
         return jsonify({"status": "success", "count": len(risultati), "data": risultati}), 200
         
     except Exception as e:

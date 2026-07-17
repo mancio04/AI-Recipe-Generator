@@ -20,7 +20,7 @@ model = SentenceTransformer("all-MiniLM-L6-v2")
 print("SBERT loaded")
 
 # converto in lista di stringhe perchè SBERT lavora con le stringhe
-texts = [" ".join(ingredients) for ingredients in dataset["NER"]]
+texts = [" ".join(sorted(ingredients)) for ingredients in dataset["NER"]]
 
 # creazione degli embeddings (matrice 2 231 142 x 384)
 print("\nCreating embeddings...")

@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ricette Consigliate</title>
+    <title>Generated recipes</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body class="result-page">
-    <a href="/" class="back-link">← Torna alla ricerca</a>
-    <h2>Ricette consigliate per te</h2>
-    <div class="query-box">Hai cercato: "{{ query }}"</div>
+    <a href="/" class="back-link">← Back to search</a>
+    <h2>Recipes suggested for you</h2>
+    <div class="query-box">Your ingredients: "{{ query }}"</div>
     {% for recipe in recipes %}
         <div class="recipe-card">
             <h3 class="recipe-title">{{ loop.index }}. {{ recipe.title }}</h3>
-            <span class="score">Score di somiglianza: {{ "%.0f"|format(recipe.score) }}/5</span>
-            <div class="section-title">Ingredienti necessari (NER):</div>
+            <span class="score">Similarity score: {{ "%.1f"|format(recipe.score) }}/5</span>
+            <div class="section-title">Ingredients:</div>
             <ul class="ingredients-list">
                 {% for ingredient in recipe.ingredients %}
                     {% if ingredient.strip() %}
@@ -22,7 +22,7 @@
                     {% endif %}
                 {% endfor %}
             </ul>
-            <div class="section-title">Istruzioni di preparazione:</div>
+            <div class="section-title">directions:</div>
             <ol class="directions-list">
                 {% for step in recipe.directions %}
                     {% if step.strip() %}
@@ -33,7 +33,7 @@
         </div>
     {% else %}
         <div class="recipe-card">
-            <p>Siamo spiacenti, non abbiamo trovato ricette corrispondenti ai tuoi ingredienti.</p>
+            <p>we are sorry. we couldn't find any recipis with those ingredients.</p>
         </div>
     {% endfor %}
 </body>
