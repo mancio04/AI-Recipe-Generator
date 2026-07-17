@@ -39,7 +39,7 @@ for shard in range(N_SHARDS):
     np.save(str(INDEX_DIR / f"shard_{shard}.npy"), global_indexes)
 
     # converto in lista di stringhe perchè SBERT lavora con le stringhe
-    texts = [" ".join(ingredients) for ingredients in dataset_shard["NER"]]
+    texts = [" ".join(sorted(ingredients)) for ingredients in dataset_shard["NER"]]
 
     # creazione degli embeddings (matrice 223 114 x 384)
     print("\nCreating embeddings...")

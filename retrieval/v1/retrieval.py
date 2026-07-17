@@ -25,6 +25,8 @@ index = faiss.read_index(str(INDEX_DIR / "embeddings.index"))
 def search_recipes(ingredients, top_k=5):
 
     results = []
+    # sanificazione dell'input
+    ingredients = " ".join(ingredient.strip().lower() for ingredient in sorted(ingredients.split(",")))
 
     # calcolo gli embeddings della query
     embeddings = model.encode(

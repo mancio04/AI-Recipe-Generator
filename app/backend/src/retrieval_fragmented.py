@@ -3,13 +3,13 @@ import faiss
 import numpy as np
 import pandas as pd
 from sentence_transformers import SentenceTransformer
-from embeddings_fragmented import N_SHARDS
 import sys
 from pathlib import Path
-root_path = Path(__file__).resolve().parent.parent.parent
+root_path = Path(__file__).resolve().parent.parent.parent.parent
 if str(root_path) not in sys.path:
     sys.path.insert(0, str(root_path))
 from config import FORMATTED_DATASET, INDEX_DIR
+from retrieval.v2.embeddings_fragmented import N_SHARDS
 
 # carico dataset
 print("Loading dataset...")

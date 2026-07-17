@@ -14,15 +14,13 @@ def search_recipe():
         return jsonify({"status": "error", "message": "Missing 'ingredients' in request body"}), 400
         
     ingredienti = data.get("ingredients")
-    ingredienti = " ".join(sorted(ingredienti.split(",")))
 
     try:
-        # chiamata alla funzione cerca_ricette del modulo recipe_retrieval
+        # chiamata alla funzione search_recipes del modulo src.retrieval
         risultati = search_recipes(ingredienti)
         return jsonify({"status": "success", "count": len(risultati), "data": risultati}), 200
         
     except Exception as e:
-        traceback.print_exc()
         return jsonify({"status": "error", "message": str(e)}), 500
 
 if __name__ == "__main__":
