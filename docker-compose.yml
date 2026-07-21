@@ -1,8 +1,10 @@
 services:
   backend:
     build: .
-    working_dir: /app/API
+    working_dir: /app/app/backend
     command: python api.py
+    environment:
+      - PYTHONPATH=/app:/app/app/backend
     ports:
       - "8080:8000"
     networks:
@@ -10,7 +12,7 @@ services:
 
   frontend:
     build: .
-    working_dir: /app
+    working_dir: /app/app/frontend
     command: python app.py
     ports:
       - "5050:5000"
