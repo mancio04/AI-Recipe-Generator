@@ -1,0 +1,19 @@
+#ignore the eda and evaluation files
+eda/
+evaluation/
+doc/
+retrieval/
+#ignore the full dataset if added for creating the parquet
+full_dataset.csv
+
+#ignore all system file
+.git/
+.gitignore
+README.md
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+.env
