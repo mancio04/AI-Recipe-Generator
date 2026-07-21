@@ -25,4 +25,4 @@ def search_recipe():
 
 if __name__ == "__main__":
     #facciamo girare l'API sulla porta 8000
-    app.run(host="0.0.0.0", port=8000, debug=True)
+    app.run(host="0.0.0.0", port=8000, debug=False, use_reloader=False)

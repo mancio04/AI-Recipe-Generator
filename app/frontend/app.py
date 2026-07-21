@@ -4,7 +4,7 @@ import requests
 app = Flask(__name__)
 
 # URL dell'API del backend
-BACKEND_API_URL = "http://localhost:8000/api/search"
+BACKEND_API_URL = "http://backend:8000/api/search"
 
 @app.route("/")
 def home():
@@ -37,4 +37,4 @@ def input():
 
 if __name__ == "__main__":
     # facciamo girare l'app sulla port 5000
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=False, use_reloader=False)
