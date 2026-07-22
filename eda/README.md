@@ -48,39 +48,47 @@ Le osservazioni appena fatte vengono confermate dall'unicità di ogni riga del d
 
 ## Distribuzione degli ingredienti
 
-<img src="./img/ingredients_distribution.png" width=640 height=480>
+<p align="center"><img src="./img/ingredients_distribution.png" width=640 height=480></p>
 
-La distribuzione degli ingredienti segue l'andamento di una gaussiana, dove la maggior parte delle ricette contiene fra i 4-12 ingredienti con dei picchi di concentrazione intorno ai 7-9. Notiamo anche che ci sono ricette con 0 ingredienti, 573 in totale.
+La distribuzione degli ingredienti segue l'andamento di una gaussiana, dove la maggior parte delle ricette contiene fra i 3-13 ingredienti con dei picchi di concentrazione intorno ai 7-9. Questo ci dice che nel dataset sono presenti principalmente ricette semplici che richiedono un numero limitato di ingredienti. Notiamo anche che ci sono ricette con 0 ingredienti, 573 in totale.
 
 Il grafico viene mostrato per le ricette fino a 50 ingredienti per motivi di leggibilità. Sono tuttavia poche, 58, le ricette che superano questa soglia.
 
-## Distribuzione degli step
+## Distribuzione dei passaggi
 
-<img src="./img/steps_distribution.png" width=640 height=480>
+<p align="center"><img src="./img/steps_distribution.png" width=640 height=480></p>
 
-La distribuzione degli step segue un andamento simile alla distribuzione degli ingredienti. La maggior parte delle ricette contiene fra gli 1-7 step con dei picchi di concentrazione intorno ai 3-5.
+La distribuzione dei passaggi segue un andamento simile alla distribuzione degli ingredienti. La maggior parte delle ricette contiene meno di 15 passaggi con dei picchi di concentrazione intorno ai 3-5. Anche in questo caso notiamo che sono presenti molte ricette con pochi passaggi, mentre sono un numero inferiore quelle più complesse.
 
 Il grafico viene mostrato per le ricette fino a 50 step per motivi di leggibilità. Sono tuttavia poche, 1242, le ricette che superano questa soglia.
 
 ## Distribuzione delle istruzioni
 
-<img src="./img/directions_distribution.png" width=640 height=480>
+<p align="center"><img src="./img/directions_distribution.png" width=640 height=480></p>
 
-Anche la distribuzione delle istruzioni segue un andamento simile ai due precedenti. La maggior parte delle ricette contiene delle istruzioni lunghe fra le 20-80 parole con dei picchi di concentrazione intorno alle 30-60.
+Questa volta notiamo una differenza. La maggior parte delle ricette contiene delle istruzioni lunghe fra le 20-100 parole con dei picchi di concentrazione intorno alle 30-60. Notiamo però che la distribuzione è più dilatata rispetto ai due casi precedenti, quindi il numero di parole nelle istruzioni di una ricetta è più variabile al numero di ingredienti e il numero di passaggi.
 
 Il grafico viene mostrato per le ricette fino a 500 parole per motivi di leggibilità. Sono tuttavia poche, 8311, le ricette che superano questa soglia.
 
-## Relazione tra ingredienti e step
+## Boxplot delle distribuzioni
 
-<img src="./img/ingredients_vs_steps.png" width=640 height=480>
+<p align="center"><img src="./img/boxplot.png" width=640 height=480></p>
 
-Il grafico è stato generato prendendo 10000 punti casuali con numero di ingredienti e step minore di 40.
+L’ultima considerazione fatta nel paragrafo precedente viene messa in luce con questo grafico. Il numero di ingredienti e il numero di passaggi è abbastanza compatto, mentre il numero di parole delle istruzioni è più variabile, in quanto una ricetta può essere descritta in maniera sintetica o più dettagliata.
 
-Come possiamo vedere, si ha una grande densità di ricette che arrivano fino a 15 ingredienti e step. La relazione tra questi non è tuttavia lineare: due ricette con numero di ingredienti simile possono avere un numero di step diverso tra loro.
+## Relazione tra ingredienti e passaggi
+
+<p align="center"><img src="./img/ingredients_vs_steps.png" width=640 height=480></p>
+
+Il grafico è stato generato prendendo 10 000 punti casuali con numero di ingredienti e passaggi minore di 40.
+
+Come possiamo vedere, si ha una grande densità di ricette fino ai 15 ingredienti e passaggi. La relazione tra questi non è tuttavia lineare: due ricette con numero di ingredienti simile possono avere un numero di passaggi diverso tra loro (vale anche il viceversa).
 
 ## Ingredienti più frequenti
 
 ![top 20 ingredients](./img/top20_ingredients.png)
+
+Come prevedibile, gli ingredienti maggiormente presenti sono quelli di uso comune. In primis troviamo le spezie. Seguono poi gli ingredienti che stanno alla base della maggior parte delle ricette.
 
 ## Correlazione tra gli ingredienti
 
