@@ -1,19 +1,34 @@
-#ignore the eda and evaluation files
-eda/
-evaluation/
+# ignore documents directory
 doc/
-retrieval/
-#ignore the full dataset if added for creating the parquet
-full_dataset.csv
 
-#ignore all system file
+# ignore dataset files
+dataset/full_dataset.csv
+dataset/evaluation.csv
+
+# ignore index files
+idx/shard_*
+
+# ignore eda directory
+eda/
+
+# ignore retrieval directory
+retrieval/
+
+# ignore evaluation directory
+evaluation/
+
+# ignore git files
 .git/
 .gitignore
-README.md
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
+
+# ignore virtual environment directory
 .venv/
-venv/
-.env
+
+# ignore pycache directory
+__pycache__/
+app/backend/src/__pycache__/
+
+# ignore general files
+README.MD
+normalize.py
+app/backend/src/retrieval_fragmented.py

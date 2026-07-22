@@ -1,8 +1,8 @@
 services:
   backend:
-    build: .
-    working_dir: /app/app/backend
-    command: python api.py
+    build:
+      context: .
+      dockerfile: app/backend/Dockerfile
     environment:
       - PYTHONPATH=/app:/app/app/backend
     ports:
@@ -11,9 +11,9 @@ services:
       - recipe-network
 
   frontend:
-    build: .
-    working_dir: /app/app/frontend
-    command: python app.py
+    build:
+      context: .
+      dockerfile: app/frontend/Dockerfile
     ports:
       - "5050:5000"
     depends_on:
