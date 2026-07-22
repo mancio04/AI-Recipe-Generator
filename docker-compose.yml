@@ -5,6 +5,9 @@ services:
       dockerfile: app/backend/Dockerfile
     environment:
       - PYTHONPATH=/app:/app/app/backend
+    volumes:
+      - ./dataset:/app/dataset:ro
+      - ./idx:/app/idx:ro
     ports:
       - "8080:8000"
     networks:

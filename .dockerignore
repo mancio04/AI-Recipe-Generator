@@ -2,11 +2,10 @@
 doc/
 
 # ignore dataset files
-dataset/full_dataset.csv
-dataset/evaluation.csv
+dataset/
 
 # ignore index files
-idx/shard_*
+idx/
 
 # ignore eda directory
 eda/
@@ -32,3 +31,4 @@ app/backend/src/__pycache__/
 README.MD
 normalize.py
 app/backend/src/retrieval_fragmented.py
+requirements.txt
